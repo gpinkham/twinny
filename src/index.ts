@@ -218,6 +218,7 @@ export async function activate(context: ExtensionContext) {
     commands.registerCommand(
       TWINNY_COMMAND_NAME.sendTerminalText,
       async (commitMessage: string) => {
+        vscode.env.clipboard.writeText(commitMessage || '');
         const terminal = await getTerminal()
         terminal?.sendText(getSanitizedCommitMessage(commitMessage), false)
       }
